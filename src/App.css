@@ -1,3 +1,15 @@
+:root {
+  /* Colors of Netflix */
+  --primary-color: #e50914;
+  --white: #fcfcfc;
+  --black-background: #111;
+}
+
+body {
+  background-color: var(--black-background);
+  color: var(--white);
+}
+
 .App {
   text-align: center;
 }
