@@ -10,13 +10,13 @@ const StyledButton = styled.button`
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
 `
 
-const PrimaryButton = ({ children }) => {
+const PrimaryButton = ( props ) => {
+    const { children, onClick } = props
     return (
-        <StyledButton>{children}</StyledButton>
+        <StyledButton onClick={onClick}>{children}</StyledButton>
     )
 }
 
