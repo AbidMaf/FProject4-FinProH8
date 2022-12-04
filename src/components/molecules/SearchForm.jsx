@@ -20,7 +20,7 @@ const SearchForm = (props) => {
     const { onClick } = props
     return (
         <Container>
-            <Input type="text" />
+            <Input type="text" placeholder='Search hovies here' />
             <PrimaryButton onClick={onClick}>Search</PrimaryButton>
         </Container>
     )

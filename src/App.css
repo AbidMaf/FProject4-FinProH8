@@ -5,9 +5,16 @@
   --black-background: #111;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--black-background);
   color: var(--white);
+  overflow-x: hidden;
 }
 
 .App {
@@ -17,6 +24,10 @@ body {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.focused {
+  border: 3px solid rgba(252, 252, 252, 1) !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

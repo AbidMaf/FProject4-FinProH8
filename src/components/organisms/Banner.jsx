@@ -12,6 +12,7 @@ const Container = styled.div`
     height: 72vh;
     
     background-image: url(${props => props.url});
+    transition: .75s;
     mask-image: linear-gradient(180deg, rgba(17,17,17,1) 70%, rgba(17,17,17,.5) 80%, rgba(17,17,17,0) 100%);;
     background-size: cover;
     background-position: center;
@@ -26,6 +27,7 @@ const InfoSeciton = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: .75s;
 `
 
 const GenreSection = styled.div`
@@ -43,6 +45,7 @@ const GenreSeparator = styled.div`
 
 const Title = styled.h1`
     font-size: 4.5rem;
+    line-height: 1em;
     font-weight: 700;
     text-align: left;
     margin-bottom: 0.4em;
