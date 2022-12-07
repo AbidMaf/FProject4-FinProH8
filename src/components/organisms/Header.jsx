@@ -26,6 +26,9 @@ const LayoutFlex = styled.div`
 
 const LogoType = styled.img`
     max-height: 4vh;
+    @media screen and (max-width: 560px) {
+        display: none;
+    }
 `
 
 const Header = () => {

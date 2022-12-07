@@ -16,7 +16,7 @@ const Footer = (props) => {
     const { text } = props;
     return (
         <FooterContainer>
-            <p>© 2022 Group G</p>
+            <p>FinProH8 © 2022 Group G</p>
             <p>{ text }</p>
         </FooterContainer>
     )

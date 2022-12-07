@@ -24,7 +24,13 @@ const MoviesContainer = styled.div`
     transition: all 0.5s ease-in-out;
     transform: translateY(-50px);
     padding: 1vh 0;
-    white-space: nowrap;
+    @media screen and (max-width: 768px) {
+        transform: translateY(-100px);
+        justify-content: space-evenly;
+        width: fit-content;
+        height: fit-content;
+        flex-wrap: wrap;
+    }
 `
 
 const Home = () => {
@@ -89,6 +95,16 @@ const Home = () => {
         // })
     }
 
+    const containerOnTouchStart = e => {
+        e.preventDefault()
+        movieContainer.current.scrollLeft += e.touches[0].clientY
+    }
+
+    const containerOnTouchEnd = e => {
+        e.preventDefault()
+        movieContainer.current.scrollLeft += e.touches[0].clientY
+    }
+
     return (
         <>
             <Header />
@@ -101,7 +117,9 @@ const Home = () => {
             <MoviesContainer
             ref={movieContainer}
             onMouseEnter={e => containerOnMouseEnter(e)}
-            onMouseLeave={e => containerOnMouseLeave(e)}>
+            onMouseLeave={e => containerOnMouseLeave(e)}
+            onTouchStart={e => containerOnTouchStart(e)}
+            onTouchEnd={e => containerOnTouchEnd(e)}>
                 {movies?.map((movie) => (
                     <Movie
                         isFocused={movie.focus}
