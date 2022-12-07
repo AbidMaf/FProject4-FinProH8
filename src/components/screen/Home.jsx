@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -8,7 +8,8 @@ import {
 } from '../atoms'
 import {
     Banner,
-    Header
+    Header, 
+    Footer
 } from '../organisms'
 
 const MoviesContainer = styled.div`
@@ -16,16 +17,22 @@ const MoviesContainer = styled.div`
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    overflow-x: scroll;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    /* scroll-behavior: smooth; */
+    transition: all 0.5s ease-in-out;
     transform: translateY(-50px);
+    padding: 1vh 0;
+    white-space: nowrap;
 `
 
 const Home = () => {
     const [movies, setMovies] = useState([])
     const [featuredMovieId, setFeaturedMovieId] = useState(null)
     const [featuredMovie, setFeaturedMovie] = useState({})
+    const movieContainer = useRef(null)
+
     const API_KEY = '89604591';
     
     useEffect(() => {
@@ -39,11 +46,12 @@ const Home = () => {
                 return {...movie, ...setFocus}
             })
             setMovies(modifiedMovies)
-            console.log('movies ', movies)
+            // console.log('movies ', movies)
         })
     }, [])
 
     useEffect(() => {
+        if(featuredMovieId === null) return
         axios.get(`http://www.omdbapi.com/`, {
             params: {
                 i: featuredMovieId,
@@ -65,6 +73,22 @@ const Home = () => {
         })
     }, [featuredMovieId])
 
+    const containerOnMouseEnter = e => {
+        // document.body.style.overflowY = 'hidden'
+        movieContainer.current.addEventListener('wheel', e => {
+            e.preventDefault()
+            movieContainer.current.scrollLeft += e.deltaY
+        })
+    }
+
+    const containerOnMouseLeave = e => {
+        document.body.style.overflowY = 'auto'
+        // movieContainer.addEventListener('wheen', e => {
+        //     e.preventDefault()
+        //     movieContainer.current.scrollLeft = 0
+        // })
+    }
+
     return (
         <>
             <Header />
@@ -74,7 +98,10 @@ const Home = () => {
                 genres={featuredMovie.Genre}
                 plot={featuredMovie.Plot}
             />
-            <MoviesContainer>
+            <MoviesContainer
+            ref={movieContainer}
+            onMouseEnter={e => containerOnMouseEnter(e)}
+            onMouseLeave={e => containerOnMouseLeave(e)}>
                 {movies?.map((movie) => (
                     <Movie
                         isFocused={movie.focus}
@@ -87,6 +114,9 @@ const Home = () => {
                     />
                 ))}
             </MoviesContainer>
+            <Footer
+                text='Home page made by Abid Mafahim'
+            />
         </>
     )
 }
