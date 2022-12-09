@@ -28,12 +28,18 @@ const LogoType = styled.img`
     max-height: 4vh;
 `
 
-const Header = () => {
+const Header = ({setSearchingProps}) => {
+
+    const setSearchProps = (value) => {
+
+        setSearchingProps(value)
+        console.log('Ini dari Search Props ', value)
+    }
     return (
         <Container>
             <LayoutFlex>
                 <LogoType src={Logo} alt="logo" />
-                <SearchForm onClick={() => alert('add this button action on Header.jsx')} />
+                <SearchForm setSearching = {setSearchProps} />
             </LayoutFlex>
         </Container>
     )
