@@ -51,6 +51,13 @@ const Title = styled.h1`
     margin-bottom: 0.4em;
     margin-top: 0;
     max-width: 70%;
+    @media screen and (max-width: 768px) and (min-width: 560px) {
+        font-size: 3.5rem;
+    }
+    @media screen and (max-width: 560px) {
+        max-width: 100%;
+        font-size: 3.2rem;
+    }
 `
 
 const Plot = styled.p`
@@ -58,6 +65,10 @@ const Plot = styled.p`
     font-size: 1.2rem;
     font-weight: 400;
     text-align: left;
+    @media screen and (max-width: 560px) {
+        max-width: 100%;
+        font-size: 1rem;
+    }
 `
 
 const Banner = (props) => {
